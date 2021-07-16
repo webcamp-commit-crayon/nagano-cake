@@ -1,26 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :admins
-  namespace :public do
-    get 'items/index'
-    get 'items/show'
-  end
-  namespace :public do
-    get 'homes/top'
-    get 'homes/about'
-  end
-  namespace :admin do
-    get 'homes/top'
-  end
-  namespace :admin do
-    get 'order_details/update'
-  end
   root 'public/homes#top'
   get '/about' => 'public/homes#about'
   get '/admin' => 'admin/homes#top'
   devise_for :customers
-  devise_for :admins, controllers: {
-  sessions: 'admin/sessions'
-}
   resources :customers, only: [:show, :edit, :update] do
     member do
       get :unsubscribe
@@ -41,7 +23,7 @@ Rails.application.routes.draw do
   end
   resources :addresses, only: [:index, :edit, :create, :update,:destroy]
 
-
+  devise_for :admins
   namespace:admin do
     resources :customers, only: [:index, :show, :edit, :update]
     resources :items, only: [:new, :create, :index, :show, :edit, :update]
