@@ -1,22 +1,8 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'items/index'
-    get 'items/show'
-  end
-  namespace :public do
-    get 'homes/top'
-    get 'homes/about'
-  end
-  namespace :admin do
-    get 'homes/top'
-  end
-  namespace :admin do
-    get 'order_details/update'
-  end
   root 'public/homes#top'
   get '/about' => 'public/homes#about'
   devise_for :customers
-  devise_for :admin
+  
   resources :customers, only: [:show, :edit, :update] do
     member do
       get :unsubscribe

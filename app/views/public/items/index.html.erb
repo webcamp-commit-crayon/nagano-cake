@@ -1,2 +1,12 @@
 <h1>Public::Items#index</h1>
 <p>Find me in app/views/public/items/index.html.erb</p>
+<% @items.each do |item| %>
+  <div>
+    <%#= link_to items_path(item) do %>
+      <%#= attschment_image_tag item, :image, style:"width:100%; bottom: 45px;" %>
+    <%# end %>
+    <%= item.name %>
+    <%= item.price %>円<br>
+    <%= item.introduction %>
+  </div>
+<% end %>
